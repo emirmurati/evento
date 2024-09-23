@@ -8,7 +8,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "images.unsplash.com",
+        hostname: "s1.ticketm.net",
+      },
+      {
+        protocol: "https",
+        hostname: "media.ticketmaster.eu",
       },
     ],
   },
