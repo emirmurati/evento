@@ -17,7 +17,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Evento - Find events around you",
+  title: "Eventz - Find events around you",
   description: "Browse more than 10,000 events around you",
 };
 
