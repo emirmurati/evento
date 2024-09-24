@@ -4,10 +4,6 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "bytegrad.com",
-      },
-      {
-        protocol: "https",
         hostname: "s1.ticketm.net",
       },
       {

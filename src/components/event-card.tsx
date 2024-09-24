@@ -1,12 +1,13 @@
 "use client";
-import { EventoEvent } from "@prisma/client";
+
+import { EventzEvent } from "@/lib/types";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useRef } from "react";
 
 type EventProps = {
-  event: EventoEvent;
+  event: EventzEvent;
 };
 
 const MotionLink = motion(Link);
@@ -33,15 +34,17 @@ export default function EventCard({ event }: EventProps) {
         key={event.id}
       >
         <Image
-          src={event.images[0].url}
-          alt={event.name}
+          src={event?.images[0]?.url}
+          alt={event?.name}
           width={500}
           height={280}
           className="h-[60%] object-cover"
         />
         <div className="flex flex-col flex-1 justify-center items-center ">
-          <h2 className="text-2xl font-semibold ">{event.name}</h2>
-          <p className="italic text-white/75">By {event.promoter.name}</p>
+          <h2 className="text-2xl font-semibold ">{event?.name}</h2>
+          <p className="italic text-white/75">
+            {event?.promoter?.name ? `by ${event?.promoter?.name}` : ""}
+          </p>
           {/* <p className="text-sm text-white/50">By {event.dates.start}</p> */}
         </div>
         <section className="absolute flex justify-center items-center flex-col left-[12px] top-[12px] h-[45px] w-[45px] bg-black/30 rounded-md">

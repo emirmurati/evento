@@ -1,6 +1,7 @@
 import H1 from "@/components/H1";
 import { getSwissEvent } from "@/lib/server-utils";
 import Image from "next/image";
+import Link from "next/link";
 
 type Params = {
   params: {
@@ -11,6 +12,7 @@ type Params = {
 export default async function EventPage({ params }: Params) {
   const slug = params.slug;
   const event = await getSwissEvent(slug);
+  console.log(event.classifications[0].subGenre);
 
   return (
     <main>
@@ -50,11 +52,16 @@ export default async function EventPage({ params }: Params) {
               {event.name.slice(0, 28)}
             </H1>
             <p className="whitespace-nowrap sm:text-xl text-white/75 text-md text-center">
-              Organized by <span className="italic">{event.promoter.name}</span>
+              Organized by{" "}
+              <span className="italic">{event.promoter?.name}</span>
             </p>
-            <button className="bg-white/20 text-lg capitalize bg-blur mt-5 lg:mt-auto w-[95vw] rounded-md border-white/10 border-2 sm:w-full py-2 state-effects">
+            <Link
+              href={event.url}
+              target="_blank"
+              className="bg-white/20 text-lg capitalize bg-blur mt-5 lg:mt-auto w-[95vw] rounded-md border-white/10 border-2 sm:w-full py-2 state-effects text-center"
+            >
               Get tickets
-            </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -63,8 +70,10 @@ export default async function EventPage({ params }: Params) {
         <Section>
           <SectionHeading>About this event</SectionHeading>
           <SectionContent>
-            {event.classifications[0].segment.name}
+            {event.classifications[0].genre.name}/
+            {event.classifications[0].subGenre.name}
           </SectionContent>
+          <SectionContent>{event.info ? event.info : ""}</SectionContent>
         </Section>
         <Section>
           <SectionHeading>Location</SectionHeading>

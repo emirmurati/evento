@@ -1,10 +1,15 @@
 import "server-only";
 import { notFound } from "next/navigation";
 
-export async function getSwissEvents(city: string, page = 1, size = 6) {
+export async function getSwissEvents(
+  city: string,
+  page = 1,
+  size = 6,
+  classificationName?: string
+) {
   const encodedCity = encodeURIComponent(city);
   const response = await fetch(
-    `https://app.ticketmaster.com/discovery/v2/events.json?city=${encodedCity}&page=${page}&size=${size}&apikey=${process.env.API_KEY}
+    `https://app.ticketmaster.com/discovery/v2/events.json?city=${encodedCity}&page=${page}&size=${size}&classificationName=${classificationName}&apikey=${process.env.API_KEY}
 `
   );
   const events = await response.json();
